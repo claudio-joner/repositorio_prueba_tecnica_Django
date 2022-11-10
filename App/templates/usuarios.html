@@ -1,0 +1,51 @@
+{% extends "./base.html"%}
+
+{% block title %}App Emser {% endblock %}
+
+{% block body %}
+
+<!-- Formulario-->
+<h1 style="text-align: center ;">Formulario</h1>
+<div class="card col-8 mx-auto">
+    <div class="card-body " >
+        <form action="registrarUsuario" method="POST">
+            <div class="form-group">
+               Nombre: <input name="nombre" class='form-control' type='text' pattern='[A-Za-z]{3,25}'autofocus required  >
+            </div>
+            <div class="form-group">
+               Apellido: <input name="apellido" class='form-control' type='text' pattern='[A-Za-z]{3,25}' autofocus required  >
+            </div>
+            <div class="form-group">
+                Correo: <input  name="correo" class='form-control'  type='email'  autofocus required  >
+            </div>
+            <div class="d-grid gap-2 col-2 mx-auto py-2">
+                <button class="btn btn-success" type="subbmit">Enviar</button>
+                {% csrf_token %}
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Tabla -->
+<div class="table-responsive py-4 col-10 mx-auto" >
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="text-align: center;">NOMBRE</th>
+                <th style="text-align: center;">APELLIDO</th>
+                <th style="text-align: center;">CORREO</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in usuarios %}
+            <tr>
+                <td style="text-align: center;">{{c.nombre}}</td>
+                <td style="text-align: center;">{{c.apellido}}</td>
+                <td style="text-align: center;">{{c.correo}}</td>
+            </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
